@@ -8,6 +8,7 @@ package mandaty_ewidencjaaplikacjajavafx;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+//haha//
 
 public class Ewidancja {
    private ArrayList<Kierowca> lista_kierowcow = new ArrayList<>();
