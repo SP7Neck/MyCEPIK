@@ -7,7 +7,7 @@ package mandaty_ewidencjaaplikacjajavafx;
 
 enum Status{ukarany, nieukarany, mandat_zaplacony};
 
-
+//dupa//
 
 public class Kierowca {
    private String pesel;
