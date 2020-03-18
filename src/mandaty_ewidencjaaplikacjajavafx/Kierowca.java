@@ -24,7 +24,6 @@ public class Kierowca {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
-    
     }
    
     public void setDriver (String pesel, String imie, String nazwisko){
