@@ -112,7 +112,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 VerticalBox.getChildren().add(HorizontalAddDriver);
                 Label AddDriverLabel = new Label();//"Window for police actions..."
-                AddDriverLabel.setText("Dodaj kierowce");
+                AddDriverLabel.setText("Add driver");
                 HorizontalAddDriver.getChildren().add(AddDriverLabel);
 
                 VBox VerticalAddDriver = new VBox(5);
@@ -249,6 +249,54 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                     PanaltyPointsDriver.clear();
                     PanaltyPeselDriver.clear();
                 });
+                HBox HorizontalFindDriver = new HBox(5);
+                HorizontalFindDriver.setPadding(new Insets(5));
+                /* ADDING*/
+                VerticalBox.getChildren().add(HorizontalFindDriver);
+                Label FindDriverLabel = new Label();//"Window for police actions..."
+                FindDriverLabel.setText("Find driver");
+                HorizontalFindDriver.getChildren().add(FindDriverLabel);
+                VBox VerticalFindDriver = new VBox(5);
+                VerticalFindDriver.setPadding(new Insets(5));
+                HorizontalFindDriver.getChildren().add(VerticalFindDriver);
+                TextField pesel = new TextField();
+                pesel.setPromptText("Drivers' pesel:");
+                VerticalFindDriver.getChildren().add(pesel);
+                HBox findButtonBox = new HBox();
+                findButtonBox.setSpacing(35);
+                VerticalFindDriver.getChildren().add(findButtonBox);
+                Button findDriver  = new Button("Find driver");
+                findButtonBox.getChildren().add(findDriver);
+                Button clearPeselFindDriver  = new Button("Clear");
+                clearPeselFindDriver.setMinWidth(75);
+                findButtonBox.getChildren().add(clearPeselFindDriver);
+                findDriver.setOnAction((ActionEvent e) -> {
+                    position = ew.find_kierowca(pesel.getText());
+                    if (position >= 0) {
+                        Alert warning = new Alert(AlertType.INFORMATION);
+                        warning.setTitle("Information Dialog");
+                        warning.setHeaderText(null);
+                        warning.setContentText("The driver" + ew.getKierowca(position).getImie() + " " + ew.getKierowca(position).getImie() + " is in the system " + ew.getKierowca(position));
+                        warning.showAndWait();
+                        pesel.clear();
+                    } else {
+                        Alert warning = new Alert(AlertType.INFORMATION);
+                        warning.setTitle("Information Dialog");
+                        warning.setHeaderText(null);
+                        warning.setContentText("There's no driver with such pesel: " + pesel.getText());
+                        warning.showAndWait();
+                        pesel.clear();
+
+                    }
+
+                });
+                clearPeselFindDriver.setOnAction((ActionEvent e) ->{
+                    pesel.clear();
+                });
+
+
+
+
 
 
                 Scene policemanScene = new Scene(VerticalBox, 300, 180);
@@ -266,7 +314,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 VerticalBox.getChildren().add(HorizontalAddDriver);
                 Label AddDriverLabel = new Label();//"Window for police actions..."
-                AddDriverLabel.setText("Dodaj kierowce");
+                AddDriverLabel.setText("Dodaj kierowce               ");
                 HorizontalAddDriver.getChildren().add(AddDriverLabel);
 
                 VBox VerticalAddDriver = new VBox(5);
@@ -275,7 +323,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 HorizontalAddDriver.getChildren().add(VerticalAddDriver);
                 TextField nameDriver = new TextField();
-                nameDriver.setPromptText("Imię kierowcy.");
+                nameDriver.setPromptText("Imię kierowcy.                ");
                 //nameDriver.setWrapText(true)
                 /* ADDING*/
                 VerticalAddDriver.getChildren().add(nameDriver);
@@ -317,9 +365,6 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 addDriverButtonBox.getChildren().add(clearDriver);
                 clearDriver.setOnAction((ActionEvent e) -> {
-                    System.out.println(ew.getKierowca(0));
-//                                                             System.out.println(ew.getKierowca(1));
-//                                                             System.out.println(ew.getKierowca(2));
                     nameDriver.clear();
                     surnameDriver.clear();
                     peselDriver.clear();
@@ -358,12 +403,9 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 PenalizeDriverButtonBox.getChildren().add(PanaliseDriver);
                 PanaliseDriver.setOnAction((ActionEvent e) -> {
-                    System.out.println(ew.getKierowca(0));
-                    System.out.println(ew.getKierowca(1));
-                    System.out.println(ew.getKierowca(0).getPesel());
-                    System.out.println(PanaltyPeselDriver.getText());
+
                     position = ew.find_kierowca(PanaltyPeselDriver.getText());
-                    System.out.println(position);
+
 
                     if (position >= 0) {
                         //int a = Integer.parseInt(fineDriver.getText());
