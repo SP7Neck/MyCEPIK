@@ -38,7 +38,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        //creating label email
+        //creating label login
         Text text1 = new Text("Login");
 
         //creating label password
@@ -81,19 +81,16 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
         rb1.setOnAction((ActionEvent e) -> {
             A = true;
             if (rb1.isSelected()) {
-                System.out.println("rb1");
             }
             if(rb2.isSelected()){
-                System.out.println("rb2");
             }
         });
         rb2.setOnAction((ActionEvent e) -> {
             A = false;
             if (rb1.isSelected()) {
-                System.out.println("rb1");
             }
             if(rb2.isSelected()){
-                System.out.println("rb2");
+
             }
         });
 
@@ -204,12 +201,8 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 /* ADDING*/
                 PenalizeDriverButtonBox.getChildren().add(PanaliseDriver);
                 PanaliseDriver.setOnAction((ActionEvent e) -> {
-                    System.out.println(ew.getKierowca(0));
-                    System.out.println(ew.getKierowca(1));
-                    System.out.println(ew.getKierowca(0).getPesel());
-                    System.out.println(PanaltyPeselDriver.getText());
                     position = ew.find_kierowca(PanaltyPeselDriver.getText());
-                    System.out.println(position);
+
 
                     if (position >= 0) {
                         //int a = Integer.parseInt(fineDriver.getText());
@@ -305,153 +298,103 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 policemanWindow.setScene(policemanScene);
                 policemanWindow.show();
             }
-            if(A == false){
-                VBox VerticalBox = new VBox(5);
-                VerticalBox.setPadding(new Insets(5));
+            if(A == false) {
 
-                HBox HorizontalAddDriver = new HBox(5);
-                HorizontalAddDriver.setPadding(new Insets(5));
-                /* ADDING*/
-                VerticalBox.getChildren().add(HorizontalAddDriver);
-                Label AddDriverLabel = new Label();//"Window for police actions..."
-                AddDriverLabel.setText("Dodaj kierowce               ");
-                HorizontalAddDriver.getChildren().add(AddDriverLabel);
-
-                VBox VerticalAddDriver = new VBox(5);
-                VerticalAddDriver.setPadding(new Insets(5));
-
-                /* ADDING*/
-                HorizontalAddDriver.getChildren().add(VerticalAddDriver);
-                TextField nameDriver = new TextField();
-                nameDriver.setPromptText("Imię kierowcy.                ");
-                //nameDriver.setWrapText(true)
-                /* ADDING*/
-                VerticalAddDriver.getChildren().add(nameDriver);
-                TextField surnameDriver = new TextField();
-                surnameDriver.setPromptText("Nazwisko kierowcy.");
-                //  surnameDriver.setWrapText(true);
-                /* ADDING*/
-                VerticalAddDriver.getChildren().add(surnameDriver);
-                TextField peselDriver = new TextField();
-                peselDriver.setPromptText("Pesel kierowcy.");
-                //peselDriver.setWrapText(true);
-                /* ADDING*/
-                VerticalAddDriver.getChildren().add(peselDriver);
-                HBox addDriverButtonBox = new HBox();
-                addDriverButtonBox.setSpacing(35);
-                VerticalAddDriver.getChildren().add(addDriverButtonBox);
-                Button addDriver = new Button("Add driver");
-                /* ADDING*/
-                addDriverButtonBox.getChildren().add(addDriver);
-                //HorizontalAddDriver.getChildren().add(VerticalAddDriver);
-                //                             VerticalBox.getChildren().add(HorizontalAddDriver);
-                addDriver.setOnAction((ActionEvent e) -> {
-                    //  Ewidancja ew = new Ewidancja();
-                    ew.add_driver(nameDriver.getText(), surnameDriver.getText(), peselDriver.getText());
-//                                                             System.out.println(ew.getKierowca(0));
-//                                                             System.out.println(ew.getKierowca(1));
-//                                                             System.out.println(ew.getKierowca(2));
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText(null);
-                    alert.setContentText("The driver was added to the database! Name: " + nameDriver.getText() + " Surname: " + surnameDriver.getText() + " Pesel: " + peselDriver.getText());
-                    alert.showAndWait();
-                    nameDriver.clear();
-                    surnameDriver.clear();
-                    peselDriver.clear();
-                });
-                Button clearDriver = new Button("Clear");
-                clearDriver.setMinWidth(75);
-                /* ADDING*/
-                addDriverButtonBox.getChildren().add(clearDriver);
-                clearDriver.setOnAction((ActionEvent e) -> {
-                    nameDriver.clear();
-                    surnameDriver.clear();
-                    peselDriver.clear();
-                });
-
-                HBox HorizontalPanaliseDriver = new HBox(5);
-                HorizontalPanaliseDriver.setPadding(new Insets(5));
-                /* ADDING*/
-                VerticalBox.getChildren().add(HorizontalPanaliseDriver);
-                Label PanaliseDriverLabel = new Label();//"Window for police actions..."
-                PanaliseDriverLabel.setText("Punish a driver");
-                HorizontalPanaliseDriver.getChildren().add(PanaliseDriverLabel);
-                VBox VerticalPanaliseDriver = new VBox(5);
-                VerticalPanaliseDriver.setPadding(new Insets(5));
-                /* ADDING*/
-                HorizontalPanaliseDriver.getChildren().add(VerticalPanaliseDriver);
-                TextField fineDriver = new TextField();
-                fineDriver.setPromptText("The amount of the fine");
-                //nameDriver.setWrapText(true)
-                /* ADDING*/
-                VerticalPanaliseDriver.getChildren().add(fineDriver);
-                TextField PanaltyPointsDriver = new TextField();
-                PanaltyPointsDriver.setPromptText("The amount of the panalty points.");
-                //  surnameDriver.setWrapText(true);
-                /* ADDING*/
-                VerticalPanaliseDriver.getChildren().add(PanaltyPointsDriver);
-                TextField PanaltyPeselDriver = new TextField();
-                PanaltyPeselDriver.setPromptText("Pesel kierowcy.");
-                //peselDriver.setWrapText(true);
-                /* ADDING*/
-                VerticalPanaliseDriver.getChildren().add(PanaltyPeselDriver);
-                HBox PenalizeDriverButtonBox = new HBox();
-                PenalizeDriverButtonBox.setSpacing(35);
-                VerticalPanaliseDriver.getChildren().add(PenalizeDriverButtonBox);
-                Button PanaliseDriver = new Button("Apply penalize");
-                /* ADDING*/
-                PenalizeDriverButtonBox.getChildren().add(PanaliseDriver);
-                PanaliseDriver.setOnAction((ActionEvent e) -> {
-
-                    position = ew.find_kierowca(PanaltyPeselDriver.getText());
+                Text text1 =new Text("Pay a fine");
+                TextField textPesel1 = new TextField();
+                textPesel1.setPromptText("Enter you pesel");
+                TextField textPay= new TextField();
+                textPesel1.setPromptText("Enter sum of payment");
+                TextArea SomeText = new TextArea();
+                SomeText.setWrapText(true);
+                Button btnPay = new Button("   Pay  ");
+                btnPay.setOnAction((ActionEvent e) ->{
+                    position = ew.find_kierowca(textPesel1.getText());
 
 
                     if (position >= 0) {
-                        //int a = Integer.parseInt(fineDriver.getText());
-
-                        ew.getKierowca(ew.find_kierowca(PanaltyPeselDriver.getText())).ukaracMandatem(Integer.parseInt(fineDriver.getText()));
-                        ew.getKierowca(position).ukaracPunktami(Integer.parseInt(PanaltyPointsDriver.getText()));
-                        Alert warning = new Alert(AlertType.INFORMATION);
-                        warning.setTitle("Information Dialog");
-                        warning.setHeaderText(null);
-                        warning.setContentText("The driver got penalised" + ew.getKierowca(position));
-                        warning.showAndWait();
-                        fineDriver.clear();
-                        PanaltyPointsDriver.clear();
-                        PanaltyPeselDriver.clear();
-                    } else {
-                        Alert warning = new Alert(AlertType.INFORMATION);
-                        warning.setTitle("Information Dialog");
-                        warning.setHeaderText(null);
-                        warning.setContentText("There's no driver with such pesel: " + PanaltyPeselDriver.getText() + " Surname: " + surnameDriver.getText() + " Pesel: " + peselDriver.getText());
-                        warning.showAndWait();
-                        fineDriver.clear();
-                        PanaltyPointsDriver.clear();
-                        PanaltyPeselDriver.clear();
-
+                        ew.getKierowca(position).zaplacMandat(Integer.parseInt(textPay.getText()));
+                        Alert infoDesk = new Alert (AlertType.INFORMATION);
+                        infoDesk.setTitle("Information window");
+                        infoDesk.setHeaderText("Some text");
+                        infoDesk.setContentText(ew.getKierowca(position).getImie() + " " + ew.getKierowca(position).getNazwisko() + " ! The fine was payed in the amount of " + textPay.getText());
+                        infoDesk.showAndWait();
+                        textPesel1.clear();
+                        textPay.clear();
+                    }
+                    else{
+                        Alert infoDesk = new Alert (AlertType.INFORMATION);
+                        infoDesk.setTitle("Information window");
+                        infoDesk.setHeaderText("Some text");
+                        infoDesk.setContentText("There's no driver with such pesel: " + textPesel1.getText() + "!");
                     }
                 });
-                Button CancelPanalisingDriver = new Button("Cancel");
-                CancelPanalisingDriver.setMinWidth(75);
-                /* ADDING*/
-                PenalizeDriverButtonBox.getChildren().add(CancelPanalisingDriver);
-                CancelPanalisingDriver.setOnAction((ActionEvent e) -> {
-                    System.out.println("/////////////////////////////");
-                    // System.out.println(ew.getKierowca(0));
-//                                                                            System.out.println(ew.getKierowca(1));
-//                                                                            System.out.println(ew.getKierowca(2));
-                    fineDriver.clear();
-                    PanaltyPointsDriver.clear();
-                    PanaltyPeselDriver.clear();
+                Button btnClear1 = new Button("Clear");
+                btnClear1.setOnAction((ActionEvent e) -> {
+                    textPesel1.clear();
+                    textPay.clear();
                 });
+                Text text2 =new Text("Find yourself");
+                TextField textPesel2 = new TextField();
+                textPesel2.setPromptText("Enter you pesel");
+                Button btnFind = new Button("Search");
+                btnFind.setOnAction((ActionEvent e) ->{
+                    position = ew.find_kierowca(textPesel2.getText());
+                    if (position >= 0){
+                        SomeText.setText(" There's a driver with such pesel: " + textPesel2.getText() + " " + ew.getKierowca(position));
+                        Alert infoDesk = new Alert(AlertType.INFORMATION);
+                        infoDesk.setTitle("Information window");
+                        infoDesk.setHeaderText("Some text");
+                        infoDesk.setContentText(" There's a driver with such pesel: " + textPesel2.getText() + " " + ew.getKierowca(position));
+                        infoDesk.showAndWait();
+                        textPesel2.clear();
+                    }
+                    else{
+                        Alert infoDesk = new Alert(AlertType.INFORMATION);
+                        infoDesk.setTitle("Information window");
+                        infoDesk.setHeaderText("Some text");
+                        infoDesk.setContentText(" There's no driver with such pesel: " + textPesel2.getText());
+                        infoDesk.showAndWait();
+                        textPesel2.clear();
+                    }
+                });
+                Button btnClear2 = new Button("Clear");
+
+         //       GridPane gridPaneChild = new GridPane();
+                GridPane gridPane = new GridPane();
+                gridPane.add(text1,0,0,1,1);
+                gridPane.add(textPesel1,1,0,1,1);
+                gridPane.add(textPay,1,1,1,1);
+                gridPane.add(btnPay, 0,2,1,1);
+                gridPane.add(btnClear1, 1,2,1,1);
+                gridPane.add(text2,0 ,3,1,1);
+                gridPane.add(textPesel2,1,3,1,1);
+                gridPane.add(btnFind,0,4,1,1);
+                gridPane.add(btnClear2,1,4,1,1);
+                gridPane.add(SomeText, 0, 5,2,1);
+
+//                gridPane.add(gridPaneChild,1,2);
+//                gridPaneChild.add(btnPay, 0,0);
+//                gridPaneChild.add(btnClear1, 1,0);
+//                gridPaneChild.setPadding(new Insets(5, 40, 5, 40));
+//                gridPaneChild.setVgap(5);
+//                gridPaneChild.setHgap(5);
+          //      gridPaneChild.setAlignment(Pos.BASELINE_LEFT);
+                //Setting size for the pane
+                gridPane.setMinSize(400, 400);
+
+                //Setting the padding
+                gridPane.setPadding(new Insets(10, 10, 10, 10));
+                //Setting the vertical and horizontal gaps between the columns
+                gridPane.setVgap(5);
+                gridPane.setHgap(5);
 
 
-                Scene policemanScene = new Scene(VerticalBox, 300, 180);
-                Stage policemanWindow = new Stage();
-                policemanWindow.setTitle("Window for police actions...");
-                policemanWindow.setScene(policemanScene);
-                policemanWindow.show();
+                Scene driverScene = new Scene(gridPane, 300, 250);
+                Stage driverWindow = new Stage();
+                driverWindow.setTitle("Window for drivers' actions...");
+                driverWindow.setScene(driverScene);
+                driverWindow.show();
 
 
 
