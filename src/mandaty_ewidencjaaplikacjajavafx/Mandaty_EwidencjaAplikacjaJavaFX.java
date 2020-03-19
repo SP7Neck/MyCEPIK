@@ -304,7 +304,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 TextField textPesel1 = new TextField();
                 textPesel1.setPromptText("Enter you pesel");
                 TextField textPay= new TextField();
-                textPesel1.setPromptText("Enter sum of payment");
+                textPay.setPromptText("Enter sum of payment");
                 TextArea SomeText = new TextArea();
                 SomeText.setWrapText(true);
                 Button btnPay = new Button("   Pay  ");
@@ -390,7 +390,7 @@ public class Mandaty_EwidencjaAplikacjaJavaFX extends Application {
                 gridPane.setHgap(5);
 
 
-                Scene driverScene = new Scene(gridPane, 300, 250);
+                Scene driverScene = new Scene(gridPane, 350, 290);
                 Stage driverWindow = new Stage();
                 driverWindow.setTitle("Window for drivers' actions...");
                 driverWindow.setScene(driverScene);
